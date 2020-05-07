@@ -36,6 +36,7 @@ function buildBrickObj(x, y) {
 		
 		fill(this.color);	
 		ellipse(this.x, this.y, 20, 20);
+		this.moveDown(3);
 	}
 
 	this.checkCollide = function(ball) {
@@ -43,8 +44,19 @@ function buildBrickObj(x, y) {
 		hit = collideCircleCircle(ball.x, ball.y, ball.dia, this.x, this.y, 20)
 
 		if (hit) {
-			this.color = 0;
-			this.disp() 
+			
+			if (this.color == 255)
+				this.color = 0;
+			else
+				this.color = 255; 
+		}
+	}
+
+	this.moveDown = function(val) {
+		
+		this.y += 3;
+		if (this.y >= height) {
+			this.y = 0;
 		}
 	}
 
